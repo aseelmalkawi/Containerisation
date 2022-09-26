@@ -1,0 +1,3 @@
+#Create MongoDB Image for MongoDB
+FROM mongo
+EXPOSE 27017

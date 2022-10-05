@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mongodb.DBCursor;
 import com.mongodb.MongoException;
 import com.mongodb.client.*;
 import org.bson.BsonDocument;
@@ -37,6 +38,11 @@ public class Analyst {
                 mc = MongoClients.create();
                 db = mc.getDatabase("Analytics");
                 MongoCollection<Document> collection = db.getCollection("results");
+
+                FindIterable<Document> cursor = collection.find();
+                for (Document doc : cursor) {
+                    collection.findOneAndDelete(doc);
+                }
 
                 while (rs.next()) {
                     String max = rs.getString("max(grade)");

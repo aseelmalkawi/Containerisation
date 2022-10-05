@@ -16,17 +16,15 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         authenticator = new Authenticator();
         if (authenticator.authenticate()) {
-            System.out.println("Type E to enter data or A to view analytics of saved data:");
-            String a = input.next();
-            if (a.equals("E")) {
-                enterData();
-                System.out.println("Do you want to view analytics? Yes or No: ");
+            String a = "11";
+            while (!a.equals("3")) {
+                System.out.println("Choose:\n1. Enter data\n2. View analytics of saved data\n3. Exit");
                 a = input.next();
-                if(a.equals("Yes")){
+                if (a.equals("1")) {
+                    enterData();
+                } else if (a.equals("2")) {
                     viewAnalytics();
                 }
-            } else {
-                viewAnalytics();
             }
         } else {
             System.out.println("Credentials unmatched. Try again.");
